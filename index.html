@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Legal Danger Scan - Check Your Text for Legal Risks</title>
+    <meta name="description" content="Free tool to detect defamation, copyright violations, and threats in your texts. Avoid lawsuits!">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #d32f2f;
+            text-align: center;
+        }
+        textarea {
+            width: 100%;
+            height: 200px;
+            margin: 20px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background: #d32f2f;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            display: block;
+            margin: 0 auto;
+        }
+        button:hover {
+            background: #b71c1c;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 4px;
+        }
+        .danger {
+            background: #ffebee;
+            color: #d32f2f;
+            border-left: 4px solid #d32f2f;
+        }
+        .warning {
+            background: #fff8e1;
+            color: #ff8f00;
+            border-left: 4px solid #ff8f00;
+        }
+        .safe {
+            background: #e8f5e9;
+            color: #388e3c;
+            border-left: 4px solid #388e3c;
+        }
+        .footer {
+            margin-top: 40px;
+            font-size: 12px;
+            text-align: center;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <h1>Legal Danger Scan</h1>
+    <p>Paste your text (tweet, email, post) below to check for potential legal risks:</p>
+    
+    <textarea id="input" placeholder="Example: 'This company scams customers...'"></textarea>
+    
+    <button onclick="checkText()">Scan Text</button>
+    
+    <div id="result"></div>
+    
+    <script>
+        function checkText() {
+            const text = document.getElementById("input").value.toLowerCase();
+            const resultDiv = document.getElementById("result");
+            
+            // Legal risk keywords
+            const defamationWords = ["scam", "fraud", "thief", "liar", "criminal", "steal", "cheat"];
+            const copyrightWords = ["free download", "torrent", "watch online", "pdf", "movie", "album"];
+            const threatWords = ["sue you", "ruin you", "pay me", "destroy", "revenge", "harm"];
+            
+            // Check for risks
+            let risks = [];
+            
+            if (defamationWords.some(word => text.includes(word))) {
+                risks.push("Potential <strong>defamation</strong> (false accusations can lead to lawsuits)");
+            }
+            
+            if (copyrightWords.some(word => text.includes(word))) {
+                risks.push("Potential <strong>copyright violation</strong> (sharing pirated content is illegal)");
+            }
+            
+            if (threatWords.some(word => text.includes(word))) {
+                risks.push("Potential <strong>threat</strong> (can result in legal action)");
+            }
+            
+            // Display result
+            if (risks.length > 0) {
+                resultDiv.className = risks.some(r => r.includes("threat")) ? "danger" : "warning";
+                resultDiv.innerHTML = `
+                    ⚠️ <strong>High Risk Detected!</strong><br><br>
+                    Your text contains:<br>
+                    - ${risks.join("<br>- ")}<br><br>
+                    <small>Consult a lawyer before publishing.</small>
+                `;
+            } else {
+                resultDiv.className = "safe";
+                resultDiv.innerHTML = "✅ <strong>Low Risk</strong><br><small>No obvious legal threats detected.</small>";
+            }
+        }
+    </script>
+    
+    <div class="footer">
+        <p>Disclaimer: This tool provides general information only, not legal advice.</p>
+    </div>
+</body>
+</html>
