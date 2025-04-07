@@ -21,3 +21,21 @@ function analyzeText(text) {
 
     displayResults(results);
 }
+<div class="scanner-visual">
+    <div class="risk-visualization">
+        <!-- SVG-basierte Risikoampel -->
+        <svg width="300" height="80" viewBox="0 0 300 80">
+            <circle cx="50" cy="40" r="30" fill="#4CAF50" id="risk-low"/>
+            <circle cx="150" cy="40" r="30" fill="#FFC107" id="risk-medium"/>
+            <circle cx="250" cy="40" r="30" fill="#F44336" id="risk-high"/>
+        </svg>
+    </div>
+    <div class="case-law-preview">
+        <h3>Rechtliche Grundlagen:</h3>
+        <ul>
+            <li>§ 823 BGB (Schadensersatz)</li>
+            <li>Art. 17 DSM-Richtlinie (Upload-Filter)</li>
+            <li>§ 186 StGB (Üble Nachrede)</li>
+        </ul>
+    </div>
+</div>
