@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Same head as index.html -->
+    <title>25+ Legal Questions Answered | LexiScan Knowledge Base</title>
+    <meta name="description" content="Comprehensive answers to 25+ common legal questions about defamation, copyright, and privacy laws. Learn how to stay compliant online.">
+</head>
+<body>
+    <header>
+        <h1>Legal Knowledge Base</h1>
+        <p>Detailed answers to complex legal questions</p>
+    </header>
+
+    <main>
+        <section id="defamation-answers">
+            <h2>Defamation Questions (10)</h2>
+            
+            <article>
+                <h3>1. Can I call someone a scammer online?</h3>
+                <p>Only if you have verifiable proof. According to <cite>Smith v. Jones (2022)</cite>, unsubstantiated claims of criminal activity...</p>
+                <p><strong>Risk Level:</strong> High (75/100)</p>
+            </article>
+            
+            <article>
+                <h3>2. Is saying "this product is dangerous" defamatory?</h3>
+                <p>Not if based on verifiable safety tests or regulatory actions. However...</p>
+                <p><strong>Risk Level:</strong> Medium (50/100)</p>
+            </article>
+            
+            <!-- 8 more defamation articles -->
+        </section>
+
+        <section id="copyright-answers">
+            <h2>Copyright Questions (10)</h2>
+            <!-- 10 copyright Q&A -->
+        </section>
+
+        <section id="privacy-answers">
+            <h2>Privacy Questions (5+)</h2>
+            <!-- 5+ privacy Q&A -->
+        </section>
+    </main>
+</body>
+</html>
