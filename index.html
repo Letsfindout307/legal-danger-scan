@@ -3,116 +3,264 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LexiScan | Free Legal Content Analyzer</title>
+    <title>Legal Danger Scan | Free Lawsuit Risk Analyzer</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* (Keep all previous CSS styles) */
-        .knowledge-link {
-            display: block;
-            margin-top: 1rem;
+        :root {
+            --primary: #dc2626; /* Danger red */
+            --dark: #991b1b;
+            --light: #fee2e2;
+            --text: #1f2937;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            background: #f8fafc;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        h1 {
             color: var(--primary);
-            text-decoration: none;
-            font-weight: 500;
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
         }
-        .knowledge-link:hover {
-            text-decoration: underline;
+        
+        .scanner-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid #e5e7eb;
         }
+        
+        textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            margin: 1.5rem 0;
+            transition: all 0.2s;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+        }
+        
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.9rem 2.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .btn:hover {
+            background: var(--dark);
+        }
+        
         #resultContainer {
             margin-top: 2rem;
             padding: 1.5rem;
-            border-radius: 12px;
-            background: #f8fafc;
+            border-radius: 8px;
+            background: #fef2f2;
             border-left: 4px solid var(--primary);
+        }
+        
+        .risk-high { color: #dc2626; }
+        .risk-medium { color: #d97706; }
+        .risk-low { color: #059669; }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid #e5e7eb;
+        }
+        
+        .question-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .question-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            color: #6b7280;
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
-    <!-- (Keep previous header and scanner section) -->
-    
-    <section class="scanner-container">
-        <h2>Content Analyzer</h2>
-        <textarea id="userInput" placeholder="Paste your text here..."></textarea>
-        <button id="analyzeBtn" class="btn">Analyze Text</button>
-        <div id="resultContainer" style="display: none;">
-            <h3>Analysis Result:</h3>
-            <p id="riskScore"></p>
-            <p id="riskExplanation"></p>
-        </div>
-    </section>
+    <header>
+        <h1>Legal Danger Scan</h1>
+        <p>Free tool to detect lawsuit risks in your content</p>
+    </header>
 
-    <!-- Enhanced Knowledge Base Section -->
-    <section class="features-section">
-        <h2 class="section-title">25+ Legal Questions Answered</h2>
-        <div class="feature-grid">
-            <!-- Defamation Questions -->
-            <div class="feature-card">
-                <h3>Defamation Risks</h3>
-                <ul>
-                    <li>Can I call someone a scammer?</li>
-                    <li>Is it illegal to say a product is dangerous?</li>
-                    <li>Can I post negative business reviews?</li>
-                    <li>What's "opinion" vs defamation?</li>
-                    <li>Can screenshots be defamatory?</li>
-                </ul>
-                <a href="#defamation-answers" class="knowledge-link">View all defamation answers →</a>
-            </div>
+    <main>
+        <section class="scanner-container">
+            <h2>Content Scanner</h2>
+            <textarea id="userInput" placeholder="Paste your text here (Example: 'This company scams customers...')"></textarea>
+            <button id="analyzeBtn" class="btn">Scan Now</button>
             
-            <!-- Copyright Questions -->
-            <div class="feature-card">
-                <h3>Copyright Issues</h3>
-                <ul>
-                    <li>Can I use memes commercially?</li>
-                    <li>What counts as fair use?</li>
-                    <li>How to credit properly?</li>
-                    <li>Can I repost news articles?</li>
-                    <li>YouTube copyright rules</li>
-                </ul>
-                <a href="#copyright-answers" class="knowledge-link">View all copyright answers →</a>
+            <div id="resultContainer" style="display: none;">
+                <h3>Scan Results:</h3>
+                <p id="riskScore"></p>
+                <p id="riskExplanation"></p>
+                <p id="suggestions"></p>
             </div>
-            
-            <!-- Privacy Questions -->
-            <div class="feature-card">
-                <h3>Privacy Laws</h3>
-                <ul>
-                    <li>Can I share emails publicly?</li>
-                    <li>Posting photos of people?</li>
-                    <li>GDPR requirements</li>
-                    <li>Recording phone calls</li>
-                    <li>Workplace monitoring</li>
-                </ul>
-                <a href="#privacy-answers" class="knowledge-link">View all privacy answers →</a>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Working Scanner JavaScript -->
+        <section>
+            <h2>25+ Legal Questions Answered</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Defamation (10 Questions)</h3>
+                    <ul class="question-list">
+                        <li>Can I call someone a scammer?</li>
+                        <li>Is saying "avoid this business" legal?</li>
+                        <li>Can I share bad customer experiences?</li>
+                        <li>What makes a review defamatory?</li>
+                        <li>Are opinions legally protected?</li>
+                        <li><a href="legal-faqs.html#defamation">View all 10 →</a></li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Copyright (10 Questions)</h3>
+                    <ul class="question-list">
+                        <li>Can I use movie screenshots?</li>
+                        <li>How much text can I quote?</li>
+                        <li>What's fair use on YouTube?</li>
+                        <li>Can I repost news articles?</li>
+                        <li>Using memes commercially?</li>
+                        <li><a href="legal-faqs.html#copyright">View all 10 →</a></li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Privacy (5+ Questions)</h3>
+                    <ul class="question-list">
+                        <li>Can I share email screenshots?</li>
+                        <li>Posting photos of people in public?</li>
+                        <li>Recording phone calls legally?</li>
+                        <li>GDPR requirements for websites?</li>
+                        <li>Workplace monitoring rules?</li>
+                        <li><a href="legal-faqs.html#privacy">View all 5 →</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 Legal Danger Tools. Not legal advice.</p>
+        <p><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms</a></p>
+    </footer>
+
     <script>
+        // Working Scanner Functionality
         document.getElementById('analyzeBtn').addEventListener('click', function() {
-            const text = document.getElementById('userInput').value;
+            const text = document.getElementById('userInput').value.toLowerCase();
             if (!text.trim()) {
                 alert("Please enter text to analyze");
                 return;
             }
             
-            // Simple risk detection logic (expand this)
+            // Risk Detection Logic
             const risks = {
-                defamation: text.match(/\b(scam|fraud|liar|thief)\b/i) ? 70 : 0,
-                copyright: text.match(/\b(copy|steal|pirate|download)\b/i) ? 60 : 0,
-                privacy: text.match(/\b(SSN|credit card|phone number)\b/i) ? 90 : 0
+                defamation: [
+                    { term: 'scam', score: 80 },
+                    { term: 'fraud', score: 75 },
+                    { term: 'liar', score: 65 },
+                    { term: 'thief', score: 70 }
+                ],
+                copyright: [
+                    { term: 'copyright', score: 60 },
+                    { term: 'dmca', score: 70 },
+                    { term: 'pirate', score: 85 }
+                ],
+                privacy: [
+                    { term: 'ssn', score: 90 },
+                    { term: 'credit card', score: 95 },
+                    { term: 'phone number', score: 80 }
+                ]
             };
             
-            const totalRisk = Math.min(100, risks.defamation + risks.copyright + risks.privacy);
+            // Calculate Risks
+            let defamationScore = 0;
+            let copyrightScore = 0;
+            let privacyScore = 0;
             
-            // Display results
-            document.getElementById('riskScore').innerHTML = 
-                `<strong>Risk Score: ${totalRisk}/100</strong>`;
+            risks.defamation.forEach(item => {
+                if (text.includes(item.term)) defamationScore = Math.max(defamationScore, item.score);
+            });
+            
+            risks.copyright.forEach(item => {
+                if (text.includes(item.term)) copyrightScore = Math.max(copyrightScore, item.score);
+            });
+            
+            risks.privacy.forEach(item => {
+                if (text.includes(item.term)) privacyScore = Math.max(privacyScore, item.score);
+            });
+            
+            const totalScore = Math.max(defamationScore, copyrightScore, privacyScore);
+            
+            // Display Results
+            const resultContainer = document.getElementById('resultContainer');
+            const riskScoreElement = document.getElementById('riskScore');
+            const riskExplanationElement = document.getElementById('riskExplanation');
+            const suggestionsElement = document.getElementById('suggestions');
+            
+            riskScoreElement.innerHTML = `<strong>Overall Risk: <span class="risk-${totalScore > 70 ? 'high' : totalScore > 40 ? 'medium' : 'low'}">${totalScore}/100</span></strong>`;
+            
+            let explanation = [];
+            if (defamationScore > 0) explanation.push(`Defamation (${defamationScore}/100)`);
+            if (copyrightScore > 0) explanation.push(`Copyright (${copyrightScore}/100)`);
+            if (privacyScore > 0) explanation.push(`Privacy (${privacyScore}/100)`);
+            
+            riskExplanationElement.textContent = explanation.length > 0 
+                ? `Detected risks: ${explanation.join(', ')}`
+                : "No high-risk content detected";
                 
-            document.getElementById('riskExplanation').innerHTML = 
-                `Potential issues found: ${risks.defamation ? 'Defamation ' : ''} 
-                ${risks.copyright ? 'Copyright ' : ''} 
-                ${risks.privacy ? 'Privacy' : ''}`;
-                
-            document.getElementById('resultContainer').style.display = 'block';
+            suggestionsElement.textContent = totalScore > 70 
+                ? "⚠️ High risk: Consult legal counsel before publishing"
+                : totalScore > 40 
+                    ? "⚠️ Moderate risk: Review suggested changes"
+                    : "✅ Low risk: Content appears safe";
+            
+            resultContainer.style.display = 'block';
         });
     </script>
 </body>
