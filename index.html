@@ -2,23 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Will This Get Me Sued?</title>
+  <title>Legal Risk Checker</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="wrapper">
-    <h1>⚖️ Will This Get Me Sued?</h1>
-    <p class="subtext">Paste your tweet, post, or message and check for legal risk.</p>
-    
-    <textarea id="userInput" placeholder="Paste your tweet, post, or email here..."></textarea>
-    <button onclick="checkRisk()">Check Legal Risk</button>
-    
-    <div id="result"></div>
+  <div class="app">
+    <div class="card">
+      <h1>⚖️ Will This Get Me Sued?</h1>
+      <p>Paste your tweet, post, or email below</p>
+      <textarea id="userInput" placeholder="Type something legally questionable..."></textarea>
+      <button onclick="checkRisk()">Check Legal Risk</button>
+      <div id="result" class="result hidden"></div>
+    </div>
   </div>
-
   <script src="script.js"></script>
 </body>
 </html>
-
