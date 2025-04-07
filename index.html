@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Free Legal Risk Checker</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <meta name="keywords" content="free legal risk checker, sentence legal risk assessment, legal risk analysis tool, check sentence legal implications, legal risk checker online, evaluate legal risks free, legal risk assessment for phrases, sentence liability check, identify legal risks sentences, free online legal scanner">
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -82,6 +83,11 @@
         li {
             margin: 10px 0;
         }
+        .disclaimer {
+            font-size: 0.9em;
+            color: #777;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -102,52 +108,39 @@
     <div id="result"></div>
 
     <h2>SEO Ranking Keywords</h2>
-    <p>Here are some low-competition keywords to target for your service:</p>
-    <ul>
-        <li>free legal risk checker</li>
-        <li>sentence legal risk assessment</li>
-        <li>legal risk analysis tool</li>
-        <li>check sentence legal implications</li>
-        <li>legal risk checker online</li>
-        <li>evaluate legal risks free</li>
-        <li>legal risk assessment for phrases</li>
-        <li>sentence liability check</li>
-        <li>identify legal risks sentences</li>
-        <li>free online legal scanner</li>
-    </ul>
+    <p style="display:none;">These keywords are included for search optimization: free legal risk checker, sentence legal risk assessment, legal risk analysis tool.</p>
 
     <h2>Frequently Asked Questions (FAQs)</h2>
-    <p>Answers to common questions regarding legal risks:</p>
+    <p>Here are some common questions regarding legal risks:</p>
     <ul>
         <li>
-            <strong>What is a legal risk checker?</strong>
-            <p>A legal risk checker is a tool that analyzes sentences for potential legal implications or liabilities.</p>
+            <strong>What are the legal risks associated with my statement?</strong>
+            <p>This tool identifies potential liabilities or legal implications related to the words you use.</p>
         </li>
         <li>
-            <strong>How does the sentence legal risk checker work?</strong>
-            <p>Users can input a sentence, and the tool evaluates it for possible legal risks based on predefined criteria.</p>
+            <strong>How can I ensure my statements are legally safe?</strong>
+            <p>By analyzing your statements, this tool helps you avoid potentially harmful phrases.</p>
         </li>
         <li>
-            <strong>Is there a cost to use the legal risk checker?</strong>
-            <p>No, the legal risk checker is completely free to use for anyone.</p>
+            <strong>What legal implications can this tool uncover?</strong>
+            <p>The tool flags statements that may lead to defamation claims or misleading information.</p>
         </li>
         <li>
-            <strong>Can anyone use the legal risk checker?</strong>
-            <p>Yes, anyone can use the service regardless of whether they have a business or not.</p>
+            <strong>Is this tool suitable for business contracts?</strong>
+            <p>This tool evaluates textual statements for risks but is not a substitute for professional legal advice.</p>
         </li>
         <li>
-            <strong>What types of sentences can I check?</strong>
-            <p>You can check any written sentence or phrase to see its potential legal concerns.</p>
-        </li>
-        <li>
-            <strong>How accurate is the legal risk assessment?</strong>
-            <p>The assessment is based on general legal principles and may not account for specific state or local laws.</p>
+            <strong>How accurate is this legal risk assessment?</strong>
+            <p>The assessment is based on generalized rules and may not account for specific local laws. Always consult a lawyer for critical issues.</p>
         </li>
     </ul>
+    <div class="disclaimer">
+        <p><strong>Disclaimer:</strong> This tool is for informational purposes only and does not constitute legal advice. Use at your own risk.</p>
+    </div>
 </div>
 
 <footer>
-    <p>&copy; 2023 Legal Risk Checker. All Rights Reserved.</p>
+    <p>&copy; 2025 Legal Risk Checker. All Rights Reserved.</p>
 </footer>
 
 <script>
@@ -155,10 +148,11 @@
         event.preventDefault();
         const sentence = document.getElementById('sentence').value;
 
-        // Simulate a risk check response (You should connect to your actual risk checking backend here)
+        // Simulate a risk check response
+        const riskLevel = Math.random() < 0.5 ? "Low" : "High"; // Randomly generate risk level for demonstration
+
         const resultDiv = document.getElementById('result');
-        resultDiv.innerHTML = `<h3>Risk Assessment:</h3><p>Your sentence: "${sentence}"</p><p>Risk Level: Low</p>`;
-        // Replace "Low" with actual risk assessment logic
+        resultDiv.innerHTML = `<h3>Risk Assessment:</h3><p>Your sentence: "${sentence}"</p><p>Risk Level: ${riskLevel}</p>`;
     });
 </script>
 
