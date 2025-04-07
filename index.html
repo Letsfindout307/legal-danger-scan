@@ -1,41 +1,19 @@
-// Hochpräziser Risiko-Algorithmus
-function analyzeText(text) {
-    // 1. Defamation Detection (BGH-Urteile)
-    const defamationPatterns = [
-        { pattern: /\b(betrüger|abzocke|scam)\b/gi, weight: 0.9, precedent: "BGH Urteil I ZR 114/17" },
-        { pattern: /\b(gefährlich|gesundheitsschädlich)\b/gi, weight: 0.7, test: hasEvidence(text) }
-    ];
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Legal Risk Checker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>⚖️ Will This Get Me Sued?</h1>
+    <textarea id="userInput" placeholder="Paste your tweet, post, or email here..."></textarea>
+    <button onclick="checkRisk()">Check Legal Risk</button>
+    <div id="result"></div>
+  </div>
 
-    // 2. Copyright Detection (EU-Richtlinie 2019/790)
-    const copyrightPatterns = [
-        { pattern: /©|(?:urheberrecht|copyright)/gi, weight: 0.6 },
-        { pattern: /(\b[A-Z]{2,}\b).*?(?:logo|marke)/g, weight: 0.8 } // Markennamen
-    ];
-
-    // 3. Ergebnisberechnung
-    const results = {
-        defamation: calculateRisk(defamationPatterns),
-        copyright: calculateRisk(copyrightPatterns),
-        privacy: detectGDPR(text) // DSGVO-spezifisch
-    };
-
-    displayResults(results);
-}
-<div class="scanner-visual">
-    <div class="risk-visualization">
-        <!-- SVG-basierte Risikoampel -->
-        <svg width="300" height="80" viewBox="0 0 300 80">
-            <circle cx="50" cy="40" r="30" fill="#4CAF50" id="risk-low"/>
-            <circle cx="150" cy="40" r="30" fill="#FFC107" id="risk-medium"/>
-            <circle cx="250" cy="40" r="30" fill="#F44336" id="risk-high"/>
-        </svg>
-    </div>
-    <div class="case-law-preview">
-        <h3>Rechtliche Grundlagen:</h3>
-        <ul>
-            <li>§ 823 BGB (Schadensersatz)</li>
-            <li>Art. 17 DSM-Richtlinie (Upload-Filter)</li>
-            <li>§ 186 StGB (Üble Nachrede)</li>
-        </ul>
-    </div>
-</div>
+  <script src="script.js"></script>
+</body>
+</html>
