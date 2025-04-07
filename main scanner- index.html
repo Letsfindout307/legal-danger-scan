@@ -3,73 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Legal Danger Scan 2023 | Free Defamation & Copyright Checker</title>
-    <meta name="description" content="🔍 Free lawsuit risk analyzer. Check for defamation, DMCA violations & privacy risks in your content. 3 free scans daily.">
-    
-    <!-- Schema.org -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "Legal Danger Scan",
-      "url": "https://legaldangerscan.com",
-      "applicationCategory": "LegalApplication",
-      "operatingSystem": "Web",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
-    }
-    </script>
+    <title>Legal Danger Scan 2024 | Free Defamation & Copyright Checker</title>
+    <meta name="description" content="🔍 Free lawsuit risk analyzer. Check for defamation, DMCA violations & privacy risks. 3 free scans daily.">
     
     <!-- Preload -->
-    <link rel="preload" href="css/styles.css" as="style">
-    <link rel="preload" href="js/scanner.js" as="script">
+    <link rel="preload" href="assets/css/styles.css" as="style">
+    <link rel="preload" href="assets/js/scanner.js" as="script">
     
     <!-- Critical CSS -->
     <style>
-        /* (Same as previous critical CSS) */
+        /* (Previous critical CSS here) */
     </style>
 </head>
-
 <body>
     <header>
         <h1>Legal Danger Scan</h1>
-        <p>Check your content for <strong>defamation</strong>, <strong>copyright</strong>, and <strong>privacy</strong> risks</p>
+        <p>Protect yourself from <strong>defamation</strong>, <strong>copyright</strong>, and <strong>privacy</strong> lawsuits</p>
     </header>
 
     <main>
         <section class="scanner">
-            <h2>Free Risk Analysis</h2>
-            <textarea placeholder="Paste text to scan (Example: 'This company scams customers...')"></textarea>
-            <button>Scan Now</button>
-            <p class="scan-limit">3 free scans/day • <a href="/pro-features">Unlock unlimited scans</a></p>
-        </section>
-
-        <section class="features">
-            <h2>What We Detect</h2>
-            <ul>
-                <li><strong>Defamation Risks:</strong> Unsubstantiated claims that could trigger libel lawsuits</li>
-                <li><strong>DMCA Flags:</strong> Potential copyright violations in your text</li>
-                <li><strong>Privacy Issues:</strong> Accidental disclosure of sensitive information</li>
-            </ul>
+            <h2 class="sr-only">Content Scanner</h2>
+            <textarea placeholder="Paste text to analyze..."></textarea>
+            <button aria-label="Scan for legal risks">Scan Now</button>
+            <p class="scan-limit"><small>3 free scans/day • <a href="pro-features.html">Unlock unlimited scans</a></small></p>
         </section>
 
         <section class="preview-faqs">
-            <h2>Common Legal Questions</h2>
-            <div class="faq-preview">
-                <h3><a href="/legal-faqs#defamation">Can I say a business is a scam?</a></h3>
-                <p>Only with concrete evidence. Unproven claims may constitute commercial defamation...</p>
+            <h2>Common Legal Concerns</h2>
+            <div class="faq-teaser">
+                <h3><a href="legal-faqs.html#defamation">Can I call a business "scammy" in a review?</a></h3>
+                <p>Only with verifiable proof. Unsubstantiated claims may constitute commercial defamation...</p>
             </div>
-            <a href="/legal-faqs" class="see-all">View all 25+ legal questions →</a>
+            <a href="legal-faqs.html" class="see-all">View all 25+ legal questions →</a>
         </section>
     </main>
 
     <footer>
-        <p>© 2023 Legal Danger Tools • <a href="/privacy">Privacy Policy</a></p>
+        <nav aria-label="Legal">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="pro-features.html">Pro Features</a>
+        </nav>
+        <p>© 2024 Legal Danger Tools</p>
     </footer>
 
-    <script defer src="js/scanner.js"></script>
+    <script defer src="assets/js/scanner.js"></script>
 </body>
 </html>
