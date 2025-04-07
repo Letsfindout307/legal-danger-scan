@@ -3,138 +3,270 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LegalGuard | Free Content Risk Analyzer</title>
+    <title>LexiScan | Free Legal Content Analyzer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #2563eb;
-            --dark: #1e40af;
-            --light: #eff6ff;
-            --text: #1f2937;
+            --primary: #4f46e5;
+            --primary-light: #6366f1;
+            --dark: #312e81;
+            --light: #eef2ff;
+            --text: #1e1b4b;
+            --gray: #6b7280;
         }
+        
         body {
-            font-family: 'Inter', -apple-system, sans-serif;
+            font-family: 'Inter', sans-serif;
             line-height: 1.6;
             color: var(--text);
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 2rem;
-            background: #f9fafb;
+            padding: 2rem 1rem;
+            background: #f8fafc;
         }
+        
         header {
             text-align: center;
             margin-bottom: 3rem;
         }
+        
         h1 {
             color: var(--primary);
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
+        
+        .tagline {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
         .scanner-container {
             background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+            padding: 2.5rem;
             margin-bottom: 3rem;
+            border: 1px solid #e2e8f0;
         }
+        
         textarea {
             width: 100%;
-            min-height: 200px;
-            padding: 1rem;
-            border: 2px solid #e5e7eb;
-            border-radius: 8px;
+            min-height: 250px;
+            padding: 1.2rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
             font-size: 1rem;
-            margin-bottom: 1rem;
-            transition: border 0.2s;
+            margin: 1.5rem 0;
+            transition: all 0.2s;
+            font-family: inherit;
         }
+        
         textarea:focus {
             outline: none;
-            border-color: var(--primary);
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
         }
+        
         .btn {
             background: var(--primary);
             color: white;
             border: none;
-            padding: 0.75rem 2rem;
-            border-radius: 8px;
+            padding: 0.9rem 2.5rem;
+            border-radius: 10px;
             font-weight: 600;
+            font-size: 1.1rem;
             cursor: pointer;
-            transition: background 0.2s;
-            display: inline-block;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
+        
         .btn:hover {
             background: var(--dark);
+            transform: translateY(-1px);
         }
-        .scan-counter {
-            color: #6b7280;
-            font-size: 0.9rem;
-            margin-top: 1rem;
+        
+        .btn svg {
+            width: 18px;
+            height: 18px;
         }
+        
+        .features-section {
+            margin: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: "";
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--primary-light);
+            margin: 1rem auto 0;
+            border-radius: 2px;
+        }
+        
         .feature-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin: 3rem 0;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
         }
+        
         .feature-card {
             background: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s;
         }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            background: var(--light);
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-icon svg {
+            width: 24px;
+            height: 24px;
+            color: var(--primary);
+        }
+        
         footer {
             text-align: center;
-            margin-top: 4rem;
-            color: #6b7280;
+            margin-top: 6rem;
+            color: var(--gray);
             font-size: 0.9rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>LegalGuard</h1>
-        <p>Smart protection against online legal risks</p>
+        <h1>LexiScan</h1>
+        <p class="tagline">Your free, unlimited legal content safety check</p>
     </header>
 
     <main>
         <section class="scanner-container">
-            <h2>Content Safety Check</h2>
-            <p>Paste your text to analyze potential legal issues:</p>
-            <textarea placeholder="Example: 'This product is a scam...'"></textarea>
-            <button class="btn">Analyze Text</button>
-            <p class="scan-counter">Free scans remaining today: 3/3</p>
+            <h2 class="sr-only">Content Analyzer</h2>
+            <p>Paste any text to analyze for potential legal risks:</p>
+            <textarea placeholder="Example: 'This company engages in fraudulent practices...'"></textarea>
+            <button class="btn">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+                Analyze Text
+            </button>
         </section>
 
-        <section>
-            <h2>What We Detect</h2>
+        <section class="features-section">
+            <h2 class="section-title">How It Protects You</h2>
             <div class="feature-grid">
                 <div class="feature-card">
-                    <h3>Defamation Risks</h3>
-                    <p>Identifies unsubstantiated claims that could lead to libel lawsuits.</p>
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                    </div>
+                    <h3>Defamation Detection</h3>
+                    <p>Identifies statements that could be considered libel or slander without proper evidence.</p>
                 </div>
+                
                 <div class="feature-card">
-                    <h3>Copyright Issues</h3>
-                    <p>Flags potential DMCA violations in your content.</p>
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <h3>Copyright Alerts</h3>
+                    <p>Flags potential DMCA violations and fair use considerations in your content.</p>
                 </div>
+                
                 <div class="feature-card">
-                    <h3>Privacy Concerns</h3>
-                    <p>Detects accidental disclosure of sensitive information.</p>
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                        </svg>
+                    </div>
+                    <h3>Privacy Safeguards</h3>
+                    <p>Detects accidental disclosure of sensitive personal or financial information.</p>
                 </div>
             </div>
         </section>
 
-        <section>
-            <h2>Common Questions</h2>
-            <div class="feature-card">
-                <h3>Can I say a business is "scammy"?</h3>
-                <p>Only with verifiable proof. Unsubstantiated claims may constitute commercial defamation in many jurisdictions.</p>
-                <a href="#">See more questions →</a>
+        <section class="features-section">
+            <h2 class="section-title">Legal Knowledge Base</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Can I say a product is dangerous?</h3>
+                    <p>Learn the difference between opinion and defamatory statements when making safety claims.</p>
+                    <a href="#" style="color: var(--primary); text-decoration: none; font-weight: 500;">Read guide →</a>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Using copyrighted images</h3>
+                    <p>Understand fair use exceptions and when you need permission.</p>
+                    <a href="#" style="color: var(--primary); text-decoration: none; font-weight: 500;">Read guide →</a>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Reviewing businesses legally</h3>
+                    <p>How to share honest experiences without crossing legal boundaries.</p>
+                    <a href="#" style="color: var(--primary); text-decoration: none; font-weight: 500;">Read guide →</a>
+                </div>
             </div>
         </section>
     </main>
 
     <footer>
-        <p>© 2024 LegalGuard. Not a law firm. For educational purposes only.</p>
-        <p><a href="#">Privacy Policy</a> | <a href="#">Terms</a></p>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Contact</a>
+        </div>
+        <p>© 2024 LexiScan. Educational tool only - not legal advice.</p>
     </footer>
 </body>
 </html>
