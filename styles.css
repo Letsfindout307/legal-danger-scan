@@ -1,0 +1,20 @@
+/* International Risk Visualization */
+.risk-globe {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><circle cx="150" cy="150" r="140" fill="%23f0f2f5"/><path d="M150 10a140 140 0 0 1 89.4 32.2" stroke="%23ddd"/></svg>');
+}
+
+.risk-marker {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: #f44336;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.marker-us { top: 30%; left: 25%; }
+.marker-eu { top: 35%; left: 50%; }
+.marker-asia { top: 40%; left: 75%; }
