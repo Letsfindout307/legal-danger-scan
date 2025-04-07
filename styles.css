@@ -1,67 +1,94 @@
-* {
-  box-sizing: border-box;
+:root {
+  --bg: #f4f6f8;
+  --primary: #007aff;
+  --danger: #ff3b30;
+  --text: #2d2d2d;
+  --card-bg: #ffffff;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
-  background: #f0f4f8;
-  color: #333;
+  background: var(--bg);
+  color: var(--text);
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  height: 100vh;
 }
 
-.wrapper {
-  background: white;
-  padding: 40px;
-  border-radius: 16px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  width: 90%;
+.app {
+  width: 100%;
+  padding: 20px;
+}
+
+.card {
   max-width: 600px;
+  margin: auto;
+  background: var(--card-bg);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: var(--shadow);
   text-align: center;
 }
 
 h1 {
-  font-size: 2rem;
   margin-bottom: 10px;
+  font-size: 28px;
 }
 
-.subtext {
-  color: #666;
-  font-size: 1rem;
+p {
   margin-bottom: 20px;
+  color: #666;
 }
 
 textarea {
   width: 100%;
+  min-height: 120px;
   padding: 15px;
   font-size: 16px;
   border: 2px solid #ddd;
-  border-radius: 10px;
+  border-radius: 12px;
   resize: vertical;
-  min-height: 150px;
-  margin-bottom: 20px;
+  transition: border-color 0.2s ease;
+}
+
+textarea:focus {
+  border-color: var(--primary);
+  outline: none;
 }
 
 button {
-  padding: 15px 30px;
-  font-size: 16px;
-  background-color: #007bff;
+  margin-top: 20px;
+  background: var(--primary);
   color: white;
+  font-size: 16px;
+  padding: 14px 24px;
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: background 0.2s ease;
 }
 
 button:hover {
-  background-color: #0056cc;
+  background: #005dd1;
 }
 
-#result {
-  margin-top: 20px;
-  font-size: 1.2rem;
+.result {
+  margin-top: 25px;
+  font-size: 18px;
   font-weight: 600;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.result.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hidden {
+  display: none;
 }
