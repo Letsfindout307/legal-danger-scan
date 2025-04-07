@@ -3,67 +3,90 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Free online tool to check if your content has legal risks. Detect defamation, copyright issues, GDPR problems and more. AI-powered legal checker for creators, websites, blogs and AI users.">
-  <meta name="keywords" content="legal risk checker, check if my content is illegal, defamation scanner, copyright checker online, GDPR analyzer, free legal tool, AI content compliance, online legal compliance tool, is my text legal, blog content scanner">
-  <title>Legal Risk Scanner | Free Online AI-Powered Legal Checker</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <meta name="description" content="Check your text for legal risks like defamation, copyright, and GDPR violations. Our free legal risk scanner helps you stay compliant globally.">
+  <meta name="keywords" content="legal risk checker, defamation checker, copyright scanner, GDPR compliance, privacy violations, text analyzer, free legal tool, international law, legal content checker, data privacy check">
+  <title>Legal Risk Checker – Scan Text for Defamation, Copyright, GDPR Violations</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 2rem; max-width: 900px; margin: auto; line-height: 1.6; background-color: #f4f4f9; }
+    h1, h2 { color: #333; }
+    .scanner-container { margin-top: 30px; }
+    .input-text { width: 100%; height: 150px; padding: 10px; border-radius: 5px; border: 1px solid #ccc; font-size: 1rem; }
+    .scan-btn { padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 1rem; }
+    .scan-btn:hover { background-color: #45a049; }
+    .result { margin-top: 20px; padding: 10px; border-radius: 5px; }
+    .result-low { background-color: #4CAF50; color: white; }
+    .result-medium { background-color: #FFC107; color: white; }
+    .result-high { background-color: #F44336; color: white; }
+    footer { margin-top: 50px; font-size: 0.9rem; color: #888; text-align: center; }
+  </style>
 </head>
-<body class="bg-white text-gray-800">
-  <div class="max-w-3xl mx-auto p-6">
-    <h1 class="text-4xl font-bold mb-4 text-blue-700">Legal Risk Scanner – Check Your Content Instantly</h1>
-    <p class="mb-6 text-lg text-gray-700">Scan your blog, AI output, website, or marketing content for potential legal risks like <strong>defamation</strong>, <strong>copyright issues</strong>, and <strong>GDPR violations</strong>. 100% free, anonymous, and instant.</p>
+<body>
 
-    <textarea id="inputText" class="w-full h-40 p-4 border border-gray-300 rounded mb-4" placeholder="Paste your content here..."></textarea>
-    <button onclick="analyzeText()" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Scan for Legal Risks</button>
+  <h1>Legal Risk Checker</h1>
+  <p>Check your text for potential legal risks like defamation, copyright violations, and GDPR compliance. Our free service scans your content and provides instant feedback.</p>
 
-    <div id="results" class="mt-6"></div>
-
-    <h2 class="text-2xl font-semibold mt-10 mb-4">What This Tool Checks</h2>
-    <ul class="list-disc list-inside text-base mb-6 text-gray-700">
-      <li><strong>Defamation detection</strong> based on legal rulings</li>
-      <li><strong>Copyright red flags</strong> in text content</li>
-      <li><strong>GDPR-related terms</strong> that may trigger privacy issues</li>
-    </ul>
-
-    <h2 class="text-xl font-bold mb-2">Disclaimer</h2>
-    <p class="text-sm text-gray-600 mb-6">
-      This is a free informational tool and does not provide legal advice. Risk scores are generated based on keyword and context analysis and are not legally binding. Use at your own discretion. For legal advice, consult a licensed professional.
-    </p>
-
-    <footer class="text-xs text-gray-500 border-t pt-4">
-      Legal basis: § 823 BGB, § 186 StGB, GDPR, EU Directive 2019/790. <br>
-      &copy; 2025 Legal Risk Checker. <a href="#" class="underline">Terms of Use</a>
-    </footer>
+  <div class="scanner-container">
+    <h2>Paste your text here to scan for legal risks:</h2>
+    <textarea class="input-text" id="textInput" placeholder="Enter your text..."></textarea><br><br>
+    <button class="scan-btn" onclick="analyzeText()">Scan for Risks</button>
   </div>
 
-  <script>
-    function analyzeText() {
-      const text = document.getElementById('inputText').value;
-      let resultHtml = '';
+  <div id="result" class="result" style="display: none;"></div>
 
-      const patterns = [
-        { label: 'Defamation', regex: /\b(fraudster|scam|rip-off|cheater|slander)\b/gi, risk: 'High', law: '§ 186 StGB (Germany)' },
-        { label: 'Health Risk Claims', regex: /\b(dangerous|harmful to health)\b/gi, risk: 'Medium', law: '§ 823 BGB (Germany)' },
-        { label: 'Copyright', regex: /©|\b(copyright|logo|brand|trademark)\b/gi, risk: 'Medium', law: 'EU Directive 2019/790' },
-        { label: 'GDPR Terms', regex: /\b(name|email|IP address|tracking|cookie|location data)\b/gi, risk: 'Low', law: 'GDPR / DSGVO' }
+  <h3>Legal Risks Detected:</h3>
+  <div id="defamationResult"></div>
+  <div id="copyrightResult"></div>
+  <div id="privacyResult"></div>
+
+  <footer>
+    <p>&copy; 2025 Legal Risk Checker. All rights reserved.</p>
+    <p><a href="terms.html">Terms of Use</a> | <a href="privacy.html">Privacy Policy</a></p>
+  </footer>
+
+  <script>
+    // Smarter Legal Risk Scanner
+    function analyzeText() {
+      const text = document.getElementById('textInput').value.toLowerCase();
+
+      // Define patterns for risk detection
+      const defamationPatterns = [
+        { pattern: /\b(scam|fraud|fraudulent|cheat|dishonest|harmful|dangerous|illegal)\b/, message: "Defamation or harmful language detected!" },
       ];
 
-      patterns.forEach(p => {
-        if (p.regex.test(text)) {
-          resultHtml += `<div class="mb-4 p-4 border-l-4 border-${getColor(p.risk)}-500 bg-${getColor(p.risk)}-50">
-            <strong>${p.label} Risk:</strong> ${p.risk} <br/>
-            <em>Trigger:</em> ${p.regex} <br/>
-            <em>Legal Reference:</em> ${p.law}
-          </div>`;
-        }
-      });
+      const copyrightPatterns = [
+        { pattern: /\b(copied|downloaded|used without permission|plagiarized|stolen)\b/, message: "Copyright infringement detected!" },
+      ];
 
-      document.getElementById('results').innerHTML = resultHtml || '<p class="text-green-600 font-semibold">No significant legal risks detected.</p>';
+      const privacyPatterns = [
+        { pattern: /\b(no consent|track users|store data indefinitely|third-party sharing)\b/, message: "Possible GDPR violation detected!" },
+      ];
+
+      // Scan the text for matching patterns
+      let defamationRisk = scanPatterns(defamationPatterns, text);
+      let copyrightRisk = scanPatterns(copyrightPatterns, text);
+      let privacyRisk = scanPatterns(privacyPatterns, text);
+
+      // Show results
+      displayResults(defamationRisk, copyrightRisk, privacyRisk);
     }
 
-    function getColor(risk) {
-      return risk === 'High' ? 'red' : risk === 'Medium' ? 'yellow' : 'green';
+    function scanPatterns(patterns, text) {
+      for (let pattern of patterns) {
+        if (pattern.pattern.test(text)) {
+          return pattern.message;
+        }
+      }
+      return "No significant legal risk detected.";
+    }
+
+    function displayResults(defamationRisk, copyrightRisk, privacyRisk) {
+      document.getElementById('defamationResult').innerHTML = defamationRisk;
+      document.getElementById('copyrightResult').innerHTML = copyrightRisk;
+      document.getElementById('privacyResult').innerHTML = privacyRisk;
+
+      document.getElementById('result').style.display = 'block';
     }
   </script>
+
 </body>
 </html>
