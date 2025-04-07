@@ -1,0 +1,3 @@
+mkdir -p assets/{css,js,img}
+touch index.html legal-faqs.html pro-features.html privacy.html
+touch assets/css/styles.css assets/js/scanner.js 
