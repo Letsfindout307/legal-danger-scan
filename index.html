@@ -1,107 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Legal Risk Checker - Scan your text for defamation, copyright issues, and GDPR violations. Free automated service.">
-  <meta name="keywords" content="legal risk checker, defamation scanner, copyright check, GDPR compliance, legal issues, text scanner, risk analysis">
-  <title>Legal Risk Checker – Scan Text for Defamation, Copyright, and GDPR Violations</title>
-  <script>
-    function analyzeText(text) {
-      // Enhanced Defamation Detection
-      const defamationPatterns = [
-        { pattern: /\b(scams?|frauds?|cheats?|liars?|dishonest|fake|dangerous|harmful|illegal|rip-off)\b/gi, weight: 0.9, precedent: "General defamation risk" },
-        { pattern: /\b(this|that)\s+(company|person|business|organization)\s+(is|are)\s+(a\s+)?(scam|fraud|fake|dangerous)\b/gi, weight: 0.8, precedent: "Accusation of scam/fraud against a company/person" }
-      ];
-
-      // Copyright Detection
-      const copyrightPatterns = [
-        { pattern: /©|(?:copyright|owned|rights?)/gi, weight: 0.6 },
-        { pattern: /\b(used|copied|downloaded|stolen|no\spermission)\s+.*?\b(?:logo|brand|trademark)\b/gi, weight: 0.8, precedent: "Use of logos or trademarks without permission" }
-      ];
-
-      // GDPR / Data Privacy Detection
-      const privacyPatterns = [
-        { pattern: /\b(track|collect|store)\s+(user|personal)\s+data\b/gi, weight: 0.7, precedent: "Data collection without consent" },
-        { pattern: /\b(indefinitely|permanently)\s+(store|share)\s+(user\s+data|personal\s+information)\b/gi, weight: 0.9, precedent: "Storing or sharing user data without consent" }
-      ];
-
-      // Results calculation
-      const results = {
-        defamation: calculateRisk(defamationPatterns),
-        copyright: calculateRisk(copyrightPatterns),
-        privacy: calculateRisk(privacyPatterns)
-      };
-
-      displayResults(results);
-    }
-
-    function calculateRisk(patterns) {
-      let risk = 0;
-      patterns.forEach(pattern => {
-        if (pattern.pattern.test(document.getElementById('textInput').value)) {
-          risk += pattern.weight;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Legal Risk Checker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
         }
-      });
-      return risk;
-    }
-
-    function displayResults(results) {
-      const defamationRisk = results.defamation;
-      const copyrightRisk = results.copyright;
-      const privacyRisk = results.privacy;
-
-      const totalRisk = defamationRisk + copyrightRisk + privacyRisk;
-
-      let riskLevel = "Low";
-      if (totalRisk > 1.5) riskLevel = "High";
-      else if (totalRisk > 1) riskLevel = "Medium";
-
-      document.getElementById('riskLevel').textContent = `Risk Level: ${riskLevel}`;
-      document.getElementById('riskDescription').textContent = `Defamation Risk: ${defamationRisk}, Copyright Risk: ${copyrightRisk}, Privacy Risk: ${privacyRisk}`;
-      document.getElementById('riskColor').className = riskLevel.toLowerCase();
-    }
-  </script>
-  <style>
-    body { font-family: Arial, sans-serif; padding: 20px; background-color: #f4f4f9; }
-    .scanner-visual { margin: 20px 0; }
-    .risk-visualization { display: flex; justify-content: center; }
-    .risk-visualization circle { transition: all 0.5s; }
-    #risk-low { fill: #4CAF50; }
-    #risk-medium { fill: #FFC107; }
-    #risk-high { fill: #F44336; }
-    #riskLevel { font-size: 1.5rem; font-weight: bold; margin-top: 10px; }
-    #riskDescription { margin-top: 5px; font-size: 1.1rem; color: #555; }
-    footer { margin-top: 30px; font-size: 0.9rem; color: #777; text-align: center; }
-    .low { color: green; }
-    .medium { color: orange; }
-    .high { color: red; }
-  </style>
+        header {
+            background-color: #007BFF;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        h2 {
+            color: #007BFF;
+            margin-top: 30px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        textarea {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: none;
+            height: 100px;
+        }
+        button {
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #dddddd;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #777;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+    </style>
 </head>
 <body>
-  <h1>Legal Risk Checker</h1>
-  <p>Scan your text for potential legal risks such as defamation, copyright violations, and GDPR compliance issues. Just paste your content below to get started.</p>
 
-  <textarea id="textInput" rows="10" style="width: 100%;"></textarea><br><br>
-  <button onclick="analyzeText()">Check for Legal Risks</button>
+<header>
+    <h1>Free Legal Risk Checker</h1>
+    <p>Check your sentence for potential legal risks</p>
+</header>
 
-  <div class="scanner-visual">
-    <div class="risk-visualization">
-      <svg width="300" height="80" viewBox="0 0 300 80">
-        <circle cx="50" cy="40" r="30" id="risk-low"/>
-        <circle cx="150" cy="40" r="30" id="risk-medium"/>
-        <circle cx="250" cy="40" r="30" id="risk-high"/>
-      </svg>
-    </div>
-    <div>
-      <h3 id="riskLevel">Risk Level: Low</h3>
-      <p id="riskDescription">Defamation Risk: 0, Copyright Risk: 0, Privacy Risk: 0</p>
-    </div>
-  </div>
+<div class="container">
+    <h2>Enter a Sentence</h2>
+    <form id="risk-checker-form">
+        <label for="sentence">Your Sentence</label>
+        <textarea id="sentence" required placeholder="Type your sentence here..."></textarea>
 
-  <footer>
-    <p><a href="terms.html">Terms of Use</a> | <a href="privacy.html">Privacy Policy</a></p>
-  </footer>
+        <button type="submit">Check Risk</button>
+    </form>
+    <div id="result"></div>
+
+    <h2>SEO Ranking Keywords</h2>
+    <p>Here are some low-competition keywords to target for your service:</p>
+    <ul>
+        <li>free legal risk checker</li>
+        <li>sentence legal risk assessment</li>
+        <li>legal risk analysis tool</li>
+        <li>check sentence legal implications</li>
+        <li>legal risk checker online</li>
+        <li>evaluate legal risks free</li>
+        <li>legal risk assessment for phrases</li>
+        <li>sentence liability check</li>
+        <li>identify legal risks sentences</li>
+        <li>free online legal scanner</li>
+    </ul>
+
+    <h2>Frequently Asked Questions (FAQs)</h2>
+    <p>Answers to common questions regarding legal risks:</p>
+    <ul>
+        <li>
+            <strong>What is a legal risk checker?</strong>
+            <p>A legal risk checker is a tool that analyzes sentences for potential legal implications or liabilities.</p>
+        </li>
+        <li>
+            <strong>How does the sentence legal risk checker work?</strong>
+            <p>Users can input a sentence, and the tool evaluates it for possible legal risks based on predefined criteria.</p>
+        </li>
+        <li>
+            <strong>Is there a cost to use the legal risk checker?</strong>
+            <p>No, the legal risk checker is completely free to use for anyone.</p>
+        </li>
+        <li>
+            <strong>Can anyone use the legal risk checker?</strong>
+            <p>Yes, anyone can use the service regardless of whether they have a business or not.</p>
+        </li>
+        <li>
+            <strong>What types of sentences can I check?</strong>
+            <p>You can check any written sentence or phrase to see its potential legal concerns.</p>
+        </li>
+        <li>
+            <strong>How accurate is the legal risk assessment?</strong>
+            <p>The assessment is based on general legal principles and may not account for specific state or local laws.</p>
+        </li>
+    </ul>
+</div>
+
+<footer>
+    <p>&copy; 2023 Legal Risk Checker. All Rights Reserved.</p>
+</footer>
+
+<script>
+    document.getElementById('risk-checker-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const sentence = document.getElementById('sentence').value;
+
+        // Simulate a risk check response (You should connect to your actual risk checking backend here)
+        const resultDiv = document.getElementById('result');
+        resultDiv.innerHTML = `<h3>Risk Assessment:</h3><p>Your sentence: "${sentence}"</p><p>Risk Level: Low</p>`;
+        // Replace "Low" with actual risk assessment logic
+    });
+</script>
 
 </body>
 </html>
