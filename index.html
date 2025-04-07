@@ -1,52 +1,140 @@
 <!DOCTYPE html>
-<html lang="en" itemscope itemtype="https://schema.org/WebApplication">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Legal Danger Scan 2024 | Free Defamation & Copyright Checker</title>
-    <meta name="description" content="🔍 Free lawsuit risk analyzer. Check for defamation, DMCA violations & privacy risks. 3 free scans daily.">
-    
-    <!-- Preload -->
-    <link rel="preload" href="assets/css/styles.css" as="style">
-    <link rel="preload" href="assets/js/scanner.js" as="script">
-    
-    <!-- Critical CSS -->
+    <title>LegalGuard | Free Content Risk Analyzer</title>
     <style>
-        /* (Previous critical CSS here) */
+        :root {
+            --primary: #2563eb;
+            --dark: #1e40af;
+            --light: #eff6ff;
+            --text: #1f2937;
+        }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #f9fafb;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        h1 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            font-weight: 800;
+        }
+        .scanner-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+        textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            transition: border 0.2s;
+        }
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: inline-block;
+        }
+        .btn:hover {
+            background: var(--dark);
+        }
+        .scan-counter {
+            color: #6b7280;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+        .feature-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 <body>
     <header>
-        <h1>Legal Danger Scan</h1>
-        <p>Protect yourself from <strong>defamation</strong>, <strong>copyright</strong>, and <strong>privacy</strong> lawsuits</p>
+        <h1>LegalGuard</h1>
+        <p>Smart protection against online legal risks</p>
     </header>
 
     <main>
-        <section class="scanner">
-            <h2 class="sr-only">Content Scanner</h2>
-            <textarea placeholder="Paste text to analyze..."></textarea>
-            <button aria-label="Scan for legal risks">Scan Now</button>
-            <p class="scan-limit"><small>3 free scans/day • <a href="pro-features.html">Unlock unlimited scans</a></small></p>
+        <section class="scanner-container">
+            <h2>Content Safety Check</h2>
+            <p>Paste your text to analyze potential legal issues:</p>
+            <textarea placeholder="Example: 'This product is a scam...'"></textarea>
+            <button class="btn">Analyze Text</button>
+            <p class="scan-counter">Free scans remaining today: 3/3</p>
         </section>
 
-        <section class="preview-faqs">
-            <h2>Common Legal Concerns</h2>
-            <div class="faq-teaser">
-                <h3><a href="legal-faqs.html#defamation">Can I call a business "scammy" in a review?</a></h3>
-                <p>Only with verifiable proof. Unsubstantiated claims may constitute commercial defamation...</p>
+        <section>
+            <h2>What We Detect</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Defamation Risks</h3>
+                    <p>Identifies unsubstantiated claims that could lead to libel lawsuits.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Copyright Issues</h3>
+                    <p>Flags potential DMCA violations in your content.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Privacy Concerns</h3>
+                    <p>Detects accidental disclosure of sensitive information.</p>
+                </div>
             </div>
-            <a href="legal-faqs.html" class="see-all">View all 25+ legal questions →</a>
+        </section>
+
+        <section>
+            <h2>Common Questions</h2>
+            <div class="feature-card">
+                <h3>Can I say a business is "scammy"?</h3>
+                <p>Only with verifiable proof. Unsubstantiated claims may constitute commercial defamation in many jurisdictions.</p>
+                <a href="#">See more questions →</a>
+            </div>
         </section>
     </main>
 
     <footer>
-        <nav aria-label="Legal">
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="pro-features.html">Pro Features</a>
-        </nav>
-        <p>© 2024 Legal Danger Tools</p>
+        <p>© 2024 LegalGuard. Not a law firm. For educational purposes only.</p>
+        <p><a href="#">Privacy Policy</a> | <a href="#">Terms</a></p>
     </footer>
-
-    <script defer src="assets/js/scanner.js"></script>
 </body>
 </html>
