@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Legal Risk Checker - Scan your text for defamation, copyright issues, and GDPR violations. Free automated service.">
+  <meta name="keywords" content="legal risk checker, defamation scanner, copyright check, GDPR compliance, legal issues, text scanner, risk analysis">
+  <title>Legal Risk Checker – Scan Text for Defamation, Copyright, and GDPR Violations</title>
+  <script>
+    function analyzeText(text) {
+      // Enhanced Defamation Detection
+      const defamationPatterns = [
+        { pattern: /\b(scams?|frauds?|cheats?|liars?|dishonest|fake|dangerous|harmful|illegal|rip-off)\b/gi, weight: 0.9, precedent: "General defamation risk" },
+        { pattern: /\b(this|that)\s+(company|person|business|organization)\s+(is|are)\s+(a\s+)?(scam|fraud|fake|dangerous)\b/gi, weight: 0.8, precedent: "Accusation of scam/fraud against a company/person" }
+      ];
+
+      // Copyright Detection
+      const copyrightPatterns = [
+        { pattern: /©|(?:copyright|owned|rights?)/gi, weight: 0.6 },
+        { pattern: /\b(used|copied|downloaded|stolen|no\spermission)\s+.*?\b(?:logo|brand|trademark)\b/gi, weight: 0.8, precedent: "Use of logos or trademarks without permission" }
+      ];
+
+      // GDPR / Data Privacy Detection
+      const privacyPatterns = [
+        { pattern: /\b(track|collect|store)\s+(user|personal)\s+data\b/gi, weight: 0.7, precedent: "Data collection without consent" },
+        { pattern: /\b(indefinitely|permanently)\s+(store|share)\s+(user\s+data|personal\s+information)\b/gi, weight: 0.9, precedent: "Storing or sharing user data without consent" }
+      ];
+
+      // Results calculation
+      const results = {
+        defamation: calculateRisk(defamationPatterns),
+        copyright: calculateRisk(copyrightPatterns),
+        privacy: calculateRisk(privacyPatterns)
+      };
+
+      displayResults(results);
+    }
+
+    function calculateRisk(patterns) {
+      let risk = 0;
+      patterns.forEach(pattern => {
+        if (pattern.pattern.test(document.getElementById('textInput').value)) {
+          risk += pattern.weight;
+        }
+      });
+      return risk;
+    }
+
+    function displayResults(results) {
+      const defamationRisk = results.defamation;
+      const copyrightRisk = results.copyright;
+      const privacyRisk = results.privacy;
+
+      const totalRisk = defamationRisk + copyrightRisk + privacyRisk;
+
+      let riskLevel = "Low";
+      if (totalRisk > 1.5) riskLevel = "High";
+      else if (totalRisk > 1) riskLevel = "Medium";
+
+      document.getElementById('riskLevel').textContent = `Risk Level: ${riskLevel}`;
+      document.getElementById('riskDescription').textContent = `Defamation Risk: ${defamationRisk}, Copyright Risk: ${copyrightRisk}, Privacy Risk: ${privacyRisk}`;
+      document.getElementById('riskColor').className = riskLevel.toLowerCase();
+    }
+  </script>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background-color: #f4f4f9; }
+    .scanner-visual { margin: 20px 0; }
+    .risk-visualization { display: flex; justify-content: center; }
+    .risk-visualization circle { transition: all 0.5s; }
+    #risk-low { fill: #4CAF50; }
+    #risk-medium { fill: #FFC107; }
+    #risk-high { fill: #F44336; }
+    #riskLevel { font-size: 1.5rem; font-weight: bold; margin-top: 10px; }
+    #riskDescription { margin-top: 5px; font-size: 1.1rem; color: #555; }
+    footer { margin-top: 30px; font-size: 0.9rem; color: #777; text-align: center; }
+    .low { color: green; }
+    .medium { color: orange; }
+    .high { color: red; }
+  </style>
+</head>
+<body>
+  <h1>Legal Risk Checker</h1>
+  <p>Scan your text for potential legal risks such as defamation, copyright violations, and GDPR compliance issues. Just paste your content below to get started.</p>
+
+  <textarea id="textInput" rows="10" style="width: 100%;"></textarea><br><br>
+  <button onclick="analyzeText()">Check for Legal Risks</button>
+
+  <div class="scanner-visual">
+    <div class="risk-visualization">
+      <svg width="300" height="80" viewBox="0 0 300 80">
+        <circle cx="50" cy="40" r="30" id="risk-low"/>
+        <circle cx="150" cy="40" r="30" id="risk-medium"/>
+        <circle cx="250" cy="40" r="30" id="risk-high"/>
+      </svg>
+    </div>
+    <div>
+      <h3 id="riskLevel">Risk Level: Low</h3>
+      <p id="riskDescription">Defamation Risk: 0, Copyright Risk: 0, Privacy Risk: 0</p>
+    </div>
+  </div>
+
+  <footer>
+    <p><a href="terms.html">Terms of Use</a> | <a href="privacy.html">Privacy Policy</a></p>
+  </footer>
+
+</body>
+</html>
